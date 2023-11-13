@@ -155,6 +155,15 @@ current locale.
 Passing NULL as
 .I ps
 is not multithread safe.
+.P
+Calling this function with
+.I len
+set to the value returned from
+.I mbsrtowcs(NULL, ...)
+behaves according to scenario #2 described above:
+.I *src
+is set to the address of the terminating null wide character, rather than to NULL.
+Add 1 to that value for it to work according to scenario #3 (complete conversion).
 .SH SEE ALSO
 .BR iconv (3),
 .BR mbrtowc (3),
